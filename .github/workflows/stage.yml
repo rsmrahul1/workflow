@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: set-matrix
-        run: echo "::set-output name=matrix::$(ls products/*.json | jq -R -s -c 'split("\n")[:-1]')"
+        run: echo "name=matrix::$(ls products/*.json | jq -R -s -c 'split("\n")[:-1]')"  >> $GITHUB_OUTPUT
 
   check:
     needs: list-products
@@ -39,9 +39,9 @@ jobs:
 
       - name: Read file contents
         id: read_file
-        uses: andstor/file-reader-action@v1
+        uses: juliangruber/file-reader-action@v1
         with:
           path: ${{ matrix.manifest }}
 
       - name: File contents
-        run: echo "${ steps.read_file.outputs.contents }"
+        run: echo "${ steps.read_file.outputs.content }"
