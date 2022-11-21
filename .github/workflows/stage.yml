@@ -39,9 +39,9 @@ jobs:
 
       - name: Read file contents
         id: read_file
-        uses: juliangruber/read-file-action@v1
+        uses: andstor/file-reader-action@v1
         with:
-          path: "./${{ matrix.manifest }}"
+          path: ${{ matrix.manifest }}
 
       - name: File contents
-        run: echo "${ steps.read_file.outputs.content }"
+        run: echo "${ steps.read_file.outputs.contents }"
