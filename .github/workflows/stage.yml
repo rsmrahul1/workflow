@@ -47,7 +47,7 @@ jobs:
         run: echo "${{ steps.read_file.outputs.contents }}"
       
       - name: Save file contents
-        run: echo "::set-output name=matrix::${steps.read_file.outputs.contents}"
+        run: echo "::set-output name=matrix::${{steps.read_file.outputs.contents}}"
 
         # TODO: Set file content to the variable
         # TODO: Trigger the workflow based on the variable repo
