@@ -42,7 +42,7 @@ jobs:
         uses: jbutcher5/read-yaml@main
         with:
           file: ${{ matrix.manifest }}
-          key-path: '["name", "repoName"]'
+          key-path: '["runs", "using"]'
 
       - name: File contents
         run: echo "${{ steps.read_file.outputs.data }}"
