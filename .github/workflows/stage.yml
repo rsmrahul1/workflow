@@ -22,6 +22,8 @@ jobs:
     strategy:
         matrix:
             manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
+    outputs:
+      matrix-json: ${{ steps.read_file.outputs.contents }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -33,7 +35,7 @@ jobs:
           path: ${{ matrix.manifest }}
       
       - name: Save file contents
-        run: echo "::set-output name=matrix::${steps.read_file.outputs.contents | jq -R -s -c 'split("\n")[:-1]'}"
+        run: echo "::set-output name=matrix::${{steps.read_file.outputs.contents}}"
 
       - name: File contents
         run: echo "${{ steps.read_file.outputs.contents }}"
