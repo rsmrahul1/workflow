@@ -19,10 +19,11 @@ jobs:
     needs: list-products
     runs-on: ubuntu-latest
     strategy:
-        matrix: ${{ fromJson(needs.list-products.outputs.matrix) }}
+        matrix:
+            manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v2   
       - run: |
           echo hi
-          echo ${{ martix.name }}
+          echo ${{ matrix.manifest }}
           
