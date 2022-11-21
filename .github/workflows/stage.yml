@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
         matrix:
-            manifest: ${{ fromJson(needs.read-file.outputs.matrix) }}
+            manifest: ${{ fromJson(needs.read-file.outputs.matrix-json) }}
     steps:
       - uses: actions/checkout@v2   
       - run: |
