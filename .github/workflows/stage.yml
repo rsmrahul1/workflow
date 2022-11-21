@@ -25,5 +25,5 @@ jobs:
       - uses: actions/checkout@v2   
       - run: |
           echo hi
-          echo ${{ matrix.manifest }}
+          echo ${{ matrix.manifest.name }}
           
