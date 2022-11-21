@@ -23,7 +23,6 @@ jobs:
             manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v2   
-      - run: |
-          echo ${{ martix.manifest }}
-          
+      # - run: |
+      #     echo ${{ martix.manifest }}
           
