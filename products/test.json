@@ -1,14 +1,12 @@
-{
-  "key": [
-    {
-      "name": "test 1",
-      "repoName": "test-1",
-      "version": "v1.0.0"
-    },
-    {
-      "name": "test 2",
-      "repoName": "test-1",
-      "version": "v1.0.0"
-    }
-  ]
-}
+[
+  {
+    "name": "test 1",
+    "repoName": "test-1",
+    "version": "v1.0.0"
+  },
+  {
+    "name": "test 2",
+    "repoName": "test-1",
+    "version": "v1.0.0"
+  }
+]

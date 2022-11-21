@@ -39,9 +39,9 @@ jobs:
 
       - name: Read file contents
         id: read_file
-        uses: traversals-analytics-and-intelligence/file-reader-action@master
+        uses: andstor/file-reader-action@v1
         with:
-          file: ${{ matrix.manifest }}
+          path: ${{ matrix.manifest }}
 
       - name: File contents
-        run: echo "${ steps.read_file.outputs.content }"
+        run: ${ steps.read_file.outputs.contents }
