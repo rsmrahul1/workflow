@@ -27,21 +27,21 @@ jobs:
           echo ${{ matrix.manifest }}
           # Execute trigger
           
-  read-file:
-    needs: list-products
-    runs-on: ubuntu-latest
-    strategy:
-        matrix:
-            manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # read-file:
+  #   needs: list-products
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #       matrix:
+  #           manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Read file contents
-        id: read_file
-        uses: andstor/file-reader-action@v1
-        with:
-          path: ${{ matrix.manifest }}
+  #     - name: Read file contents
+  #       id: read_file
+  #       uses: andstor/file-reader-action@v1
+  #       with:
+  #         path: ${{ matrix.manifest }}
 
-      - name: File contents
-        run: echo "${ steps.read_file.outputs.contents }"
+  #     - name: File contents
+  #       run: echo "${ steps.read_file.outputs.contents }"
