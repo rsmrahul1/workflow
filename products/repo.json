@@ -1,0 +1,9 @@
+{
+    "repo": [
+        {
+            "name": "repo 1",
+            "repoName": "repo-1",
+            "version": "v1.0.0"
+        }
+    ]
+}
