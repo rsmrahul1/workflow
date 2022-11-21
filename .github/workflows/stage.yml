@@ -15,18 +15,7 @@ jobs:
       - id: set-matrix
         run: echo "::set-output name=matrix::$(ls products/*.json | jq -R -s -c 'split("\n")[:-1]')"
 
-  # check:
-  #   needs: list-products
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #       matrix:
-  #           manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
-  #   steps:
-  #     - uses: actions/checkout@v2   
-  #     - run: |
-  #         echo ${{ matrix.manifest }}
-  #         # Execute trigger
-          
+
   read-file:
     needs: list-products
     runs-on: ubuntu-latest
@@ -42,12 +31,22 @@ jobs:
         uses: andstor/file-reader-action@v1
         with:
           path: ${{ matrix.manifest }}
-
-      - name: File contents
-        run: echo "${{ steps.read_file.outputs.contents }}"
       
       - name: Save file contents
         run: echo "::set-output name=matrix::${{steps.read_file.outputs.contents}}"
 
-        # TODO: Set file content to the variable
+      - name: File contents
+        run: echo "${{ steps.read_file.outputs.contents }}"
+
+  check:
+    needs: read-file
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            manifest: ${{ fromJson(needs.read-file.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v2   
+      - run: |
+          echo "${{ matrix.manifest }}"
+          
         # TODO: Trigger the workflow based on the variable repo
