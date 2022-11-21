@@ -39,10 +39,9 @@ jobs:
 
       - name: Read file contents
         id: read_file
-        uses: jbutcher5/read-yaml@main
+        uses: andstor/file-reader-action@v1
         with:
-          file: ${{ matrix.manifest }}
-          key-path: '["runs", "using"]'
+          path: ${{ matrix.manifest }}
 
       - name: File contents
-        run: echo "${{ steps.read_file.outputs.data }}"
+        run: echo "${{ steps.read_file.outputs.contents }}"
