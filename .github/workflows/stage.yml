@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: set-matrix
-        run: echo "name=matrix::$(ls products/ | jq -R -s -c 'split("\n")[:-1]')"  >> $GITHUB_OUTPUT
+        run: echo "name=matrix::$(ls products/*.json | jq -R -s -c 'split("\n")[:-1]')"  >> $GITHUB_OUTPUT
 
   check:
     needs: list-products
