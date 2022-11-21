@@ -44,4 +44,4 @@ jobs:
           path: ${{ matrix.manifest }}
 
       - name: File contents
-        run: ${ steps.read_file.outputs.contents[0].name }
+        run: echo ${ steps.read_file.outputs.contents[0].name }
