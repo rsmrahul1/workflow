@@ -4,55 +4,7 @@ on:
   pull_request:
     branches:
       - stage
-
 jobs:
-  list-products:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - uses: actions/checkout@v2
-      - id: set-matrix
-        run: echo "::set-output name=matrix::$(ls products-metadata/*.json | jq -R -s -c 'split("\n")[:-1]')"
-
-
-  read-file:
-    needs: list-products
-    runs-on: ubuntu-latest
-    strategy:
-        matrix:
-            manifest: ${{ fromJson(needs.list-products.outputs.matrix) }}
-    outputs:
-      matrix-json: ${{ steps.read_file.outputs.contents }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Read file contents
-        id: read_file
-        uses: andstor/file-reader-action@v1
-        with:
-          path: ${{ matrix.manifest }}
-      
-      - name: Save file contents
-        run: echo "::set-output name=matrix::${{steps.read_file.outputs.contents}}"
-
-      - name: File contents
-        run: echo "${{ steps.read_file.outputs.contents }}"
-
-  check:
-    needs: read-file
-    runs-on: ubuntu-latest
-    strategy:
-        matrix:
-            manifest: ${{ fromJson(needs.read-file.outputs.matrix-json) }}
-    steps:
-      - uses: actions/checkout@v2   
-      - run: |
-          echo "${{ matrix.manifest }}"
-          
-        # TODO: Trigger the workflow based on the variable repo
-        
   changedfiles:
     runs-on: ubuntu-latest
     # Map a step output to a job output
@@ -64,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: Get changed files
         id: changes
         # Set outputs using the command.
