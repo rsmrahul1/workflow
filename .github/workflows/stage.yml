@@ -17,12 +17,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Checkout main repository
+      - name: Checkout stage repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           ref: 'main'
-          path: 'main-branch'
+          path: 'stage-branch'
       - name: Get changed files
         id: changes
         # Set outputs using the command.
