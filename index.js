@@ -15,14 +15,16 @@ try {
   let files = filesList.split(' ');
   const baseRepoDir = 'stage-branch';
 
+  const reposTobuild = [];
+
   for (let file of files) {
     console.log(`file from loop js ${file}!`);
     let prFileContent = fs.readFileSync(file, 'utf8')
-    console.log(`file from loop js ${content}!`);
+    console.log(`file from loop js ${prFileContent}!`);
 
     console.log(`file from baseRepoDir loop js ${file}!`);
     let baseFileContent = fs.readFileSync(path.join(baseRepoDir,file), 'utf8')
-    console.log(`file from baseRepoDir loop js ${content}!`);
+    console.log(`file from baseRepoDir loop js ${baseFileContent}!`);
 
     const baseJson = JSON.parse(baseFileContent);
     //console.log(baseJson[0]);
@@ -30,7 +32,6 @@ try {
     const prJson = JSON.parse(prFileContent);
     //console.log(prBaseJson[0]);
   
-    const reposTobuild = [];
   
     for(prProduct of prJson){
       const baseProduct = baseJson.find((baseProduct)=>baseProduct.name == prProduct.name);
@@ -38,11 +39,9 @@ try {
           reposTobuild.push(prProduct)
       };
     }
-  
-    console.log(reposTobuild);
-
   }
-
+  console.log(reposTobuild);
+  console.log(`repos ${JSON.stringify(reposTobuild)}!`);
   core.setOutput("repos", JSON.stringify(reposTobuild));
   
   // for (let file of files) {
