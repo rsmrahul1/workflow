@@ -31,8 +31,10 @@ jobs:
           echo "::set-output name=json::$(git diff  --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .json$ | xargs)"
   get_updated_repo_details:
       runs-on: ubuntu-latest
+      outputs:
+        repos: ${{ steps.reposfinder.outputs.repos}}
       needs: changedfiles
-      name: A job to say hello
+      name: A job to find the repos to build
       steps:
         # To use this repository's private action,
         # you must check out the repository
@@ -45,13 +47,13 @@ jobs:
             path: 'stage-branch'
         - name: Find the updated repo nodes
           uses: ./ # Uses an action in the root directory
-          id: hello
+          id: reposfinder
           with:
-            who-to-greet: 'Mona the user'
+            who-to-greet: 'json files'
             files-list: ${{needs.changedfiles.outputs.json}}
         # Use the output from the `hello` step
         - name: Get the output time
-          run: echo "The time was ${{ steps.hello.outputs.time }}"
+          run: echo "The time was ${{ steps.reposfinder.outputs.time }}"
   lint:
     runs-on: ubuntu-latest
     # require the first job to have ran
