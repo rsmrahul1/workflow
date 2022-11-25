@@ -9699,7 +9699,7 @@ try {
   // Split using a space character
   let files = filesList.split(' ');
 
-  for (let file in files) {
+  for (let file of files) {
     console.log(`file from loop js ${file}!`);
     let content = fs.readFileSync(file, 'utf8')
     console.log(`file from loop js ${content}!`);
