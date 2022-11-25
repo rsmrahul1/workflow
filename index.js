@@ -42,7 +42,7 @@ try {
   }
   console.log(reposTobuild);
   console.log(`repos ${JSON.stringify(reposTobuild)}!`);
-  core.setOutput("repos", JSON.stringify(reposTobuild));
+  core.setOutput("repos", "'"+JSON.stringify(reposTobuild)+"'");
   
   // for (let file of files) {
   //   console.log(`file from baseRepoDir loop js ${file}!`);
