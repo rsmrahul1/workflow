@@ -12,6 +12,8 @@ inputs:
 outputs:
   time: # id of output
     description: 'The time we greeted you'
+  repos: # id of output
+    description: 'details of repos to build'
 runs:
   using: 'node16'
   main: 'dist/index.js'

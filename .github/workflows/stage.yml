@@ -29,7 +29,7 @@ jobs:
         run: |
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
           echo "::set-output name=json::$(git diff  --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .json$ | xargs)"
-  hello_world_job:
+  get_updated_repo_details:
       runs-on: ubuntu-latest
       needs: changedfiles
       name: A job to say hello
@@ -43,7 +43,7 @@ jobs:
           with:
             ref: 'stage'
             path: 'stage-branch'
-        - name: Hello world action step
+        - name: Find the updated repo nodes
           uses: ./ # Uses an action in the root directory
           id: hello
           with:
@@ -55,9 +55,11 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     # require the first job to have ran
-    needs: changedfiles
+    needs: get_updated_repo_details
     # only run there are changed files
     if: ${{needs.changedfiles.outputs.json}}
     steps:
       - name: echo changed files
-        run: echo ${{needs.changedfiles.outputs.json}}   
+        run: echo ${{needs.changedfiles.outputs.json}}
+      - name: echo details of repo to build
+        run: echo ${{needs.get_updated_repo_details.outputs.repos}}   
