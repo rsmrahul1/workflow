@@ -21,11 +21,11 @@ try {
   }
 
   const baseRepoDir = 'stage-branch';
-
+  const branch = 'stage';
   
   for (let file of files) {
     console.log(`file from baseRepoDir loop js ${file}!`);
-    let content = fs.readFileSync(path.join(baseRepoDir,file), 'utf8')
+    let content = fs.readFileSync(path.join(baseRepoDir,branch,file), 'utf8')
     console.log(`file from baseRepoDir loop js ${content}!`);
   }
 
