@@ -2,12 +2,12 @@
   {
     "name": "Product 1 UI",
     "repoName": "product1-ui",
-    "version": "v1.0.1"
+    "version": "v4.1234.2"
   },
   {
     "name": "Product 1 api",
     "repoName": "product-1-api",
-    "version": "v1.0.0",
+    "version": "v1.3.5",
     "depend": [
       {
         "repoName": "platform",
