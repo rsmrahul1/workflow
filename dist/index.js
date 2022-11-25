@@ -9687,6 +9687,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
 const fs = __nccwpck_require__(7147);
+const path = __nccwpck_require__(1017);
 
 try {
   // `who-to-greet` input defined in action metadata file
