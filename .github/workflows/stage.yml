@@ -38,6 +38,11 @@ jobs:
         # you must check out the repository
         - name: Checkout repo
           uses: actions/checkout@v2
+        - name: Checkout stage repository
+          uses: actions/checkout@v2
+          with:
+            ref: 'stage'
+            path: 'stage-branch'
         - name: Hello world action step
           uses: ./ # Uses an action in the root directory
           id: hello
