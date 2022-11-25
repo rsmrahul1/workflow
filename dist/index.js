@@ -9705,7 +9705,7 @@ try {
     console.log(`file from loop js ${content}!`);
   }
 
-  const baseRepoDir = stage-branch
+  const baseRepoDir = 'stage-branch';
 
   
   for (let file of files) {
