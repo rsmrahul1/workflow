@@ -19,6 +19,15 @@ try {
     console.log(`file from loop js ${content}!`);
   }
 
+  const baseRepoDir = stage-branch
+
+  
+  for (let file of files) {
+    console.log(`file from baseRepoDir loop js ${file}!`);
+    let content = fs.readFileSync(path.join(baseRepoDir,file), 'utf8')
+    console.log(`file from baseRepoDir loop js ${content}!`);
+  }
+
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
