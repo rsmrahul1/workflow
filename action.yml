@@ -5,6 +5,10 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  files-list:  # id of input
+    description: 'list of changed files'
+    required: true
+    default: ''
 outputs:
   time: # id of output
     description: 'The time we greeted you'
